@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        int bit_mask = 0;
+        for(int num : nums){
+            bit_mask ^= num;
+        }
+
+        int d = bit_mask &(-bit_mask);
+        int v1 = 0;
+        for(int num : nums)
+        {
+            if(num & d){
+                v1 ^= num;
+            }
+        }
+        return vector<int> {v1, v1 ^ bit_mask};
+    }
+};
